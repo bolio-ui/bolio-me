@@ -33,12 +33,12 @@ export default class MyDocument extends Document {
               __html: `
               (function(){
                 if (!window.localStorage) return;
-                if (window.localStorage.getItem('theme') === 'light') {
-                  document.documentElement.style.background = '#fff';
-                  document.body.style.background = '#fff';
-                } else {
+                if (window.localStorage.getItem('theme') === 'gray') {
                   document.documentElement.style.background = '#121214';
                   document.body.style.background = '#121214';
+                } else {
+                  document.documentElement.style.background = '#FFFFFF';
+                  document.body.style.background = '#FFFFFF';
                 }
               })()`
             }}

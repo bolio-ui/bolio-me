@@ -1,36 +1,51 @@
 import React, { useEffect } from 'react'
-import { Section, Container, Grid, Input, Button } from '@bolio-ui/core'
-import { useForm } from 'react-hook-form'
-import { isEmpty } from 'lodash'
+import {
+  Section,
+  Container,
+  Grid,
+  Input,
+  Button,
+  Text,
+  useToasts
+} from '@bolio-ui/core'
 import { toLowerCase } from 'src/utils'
 import Base from 'src/templates/Base'
 import Hero from 'src/components/Hero'
 import { ArrowRight } from '@bolio-ui/icons'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 
 function Home({ remaining }) {
-  const { register, handleSubmit, formState, errors } = useForm({
-    mode: 'onChange'
-  })
-  // const { ToastsType, addToastWithTimeout } = useToasts()
+  const { setToast } = useToasts()
 
-  useEffect(async () => {
-    if (remaining === 0) {
-      // addToastWithTimeout(
-      //   ToastsType.ERROR,
-      //   'Github API rate limit exceeded try again in 1 hour'
-      // )
-    }
-  }, [])
-
-  const { isValid } = formState
-
-  const onSubmit = ({ username }) => {
-    console.log('aaaa =>', username)
-    if (!username || remaining === 0) return
-    const formattedUsername = toLowerCase(username)
-    if (window !== undefined)
-      window.location = `/portfolio/${formattedUsername}`
+  const initialValues = {
+    username: ''
   }
+
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().required('Username is required field.')
+  })
+
+  useEffect(() => {
+    if (remaining === 0) {
+      setToast({
+        text: 'Github API rate limit exceeded try again in 1 hour.',
+        type: 'secondary',
+        delay: 2000
+      })
+    }
+  }, [remaining, setToast])
+
+  const handleSubmit = React.useCallback(
+    (values, { resetForm }) => {
+      const wind: Window = window
+      if (!values.username || remaining === 0) return
+      const formattedUsername = toLowerCase(values.username)
+      if (wind !== undefined) wind.location = `/portfolio/${formattedUsername}`
+      resetForm({})
+    },
+    [remaining]
+  )
 
   return (
     <Base>
@@ -42,50 +57,76 @@ function Home({ remaining }) {
       />
       <Section>
         <Container>
-          <Grid.Container gap={2} justify="center" alignItems="center">
-            <Grid md>
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  width: '100%'
-                }}
-              >
-                <Grid xs={12} md={4}>
-                  <Input
-                    name="username"
-                    width="100%"
-                    placeholder="Github username..."
-                    font="16px"
-                    height={1.5}
-                    rounded
-                    disabled={remaining === 0}
-                    // error={!isEmpty(errors.username)}
-                  />
-                </Grid>
-                <Grid xs={12} md={2}>
-                  <Button
-                    iconRight={<ArrowRight />}
-                    type="secondary-light"
-                    width="100%"
-                    height={1.3}
-                    rounded
-                    disabled={!isValid || remaining === 0}
-                    onClick={handleSubmit(onSubmit)}
+          <Grid.Container gap={2} justify="center">
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+              enableReinitialize
+              validateOnMount
+            >
+              {({
+                values,
+                errors,
+                touched,
+                isValid,
+                handleChange,
+                handleBlur,
+                handleSubmit
+              }) => (
+                <>
+                  <Grid
+                    xs={12}
+                    md={4}
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    alignContent="center"
                   >
-                    Go!
-                  </Button>
-                </Grid>
-              </form>
-            </Grid>
+                    <Input
+                      name="username"
+                      placeholder="Github username..."
+                      font="16px"
+                      height={1.5}
+                      width="100%"
+                      rounded
+                      disabled={remaining === 0}
+                      value={values.username}
+                      error={touched.username && errors.username}
+                      onChange={handleChange('username')}
+                      onBlur={handleBlur('username')}
+                    />
+                    {touched.username && (
+                      <Text font="12px" mt={0.5} mb={0} type="error">
+                        {errors.username}
+                      </Text>
+                    )}
+                  </Grid>
+                  <Grid xs={12} md={2}>
+                    <Button
+                      iconRight={<ArrowRight />}
+                      type="secondary-light"
+                      width="100%"
+                      height={1.3}
+                      rounded
+                      disabled={!isValid || remaining === 0}
+                      onClick={handleSubmit}
+                    >
+                      Go!
+                    </Button>
+                  </Grid>
+                </>
+              )}
+            </Formik>
           </Grid.Container>
-          <p>Available requests</p>
-          <p>
-            {remaining}
-            /60
-          </p>
+        </Container>
+        <Container>
+          <Grid.Container gap={2} justify="center">
+            <Text p mt={2}>
+              Available requests {remaining}
+              /60
+            </Text>
+          </Grid.Container>
         </Container>
       </Section>
     </Base>
