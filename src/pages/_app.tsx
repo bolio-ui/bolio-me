@@ -14,7 +14,7 @@ import SEO from '../../next-seo.config'
 import { grayTheme } from 'src/theme'
 
 function App({ Component, pageProps }: AppProps) {
-  const [themeType, setThemeType] = useState<ThemeType>('light')
+  const [themeType, setThemeType] = useState<ThemeType>('gray')
 
   useEffect(() => {
     document.documentElement.removeAttribute('style')
