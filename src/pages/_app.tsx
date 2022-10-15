@@ -3,7 +3,11 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { DefaultSeo } from 'next-seo'
 import { BolioUIProvider, CssBaseline } from '@bolio-ui/core'
-import { SettingsContext, themes, ThemeType } from 'src/context/SettingsContext'
+import {
+  SettingsContext,
+  themes,
+  ThemeType
+} from 'src/contexts/SettingsContext'
 import Favicon from 'src/components/Favicon'
 import SEO from '../../next-seo.config'
 
