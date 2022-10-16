@@ -1,7 +1,6 @@
 import React from 'react'
 import { Page } from '@bolio-ui/core'
-import Footer from 'src/components/Footer'
-import Navigation from 'src/components/Navigation'
+import { Footer, Navigation } from 'src/components'
 
 export type BaseTemplateProps = {
   children: React.ReactNode

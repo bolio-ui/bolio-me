@@ -33,10 +33,10 @@ function Home({ remaining }) {
       setToast({
         text: 'Github API rate limit exceeded try again in 1 hour.',
         type: 'secondary',
-        delay: 2000
+        delay: 3000
       })
     }
-  }, [remaining, setToast])
+  }, [])
 
   const handleSubmit = React.useCallback(
     (values, { resetForm }) => {

@@ -1,41 +1,25 @@
 import { useEffect } from 'react'
-import { Section } from '@bolio-ui/core'
-import PropTypes from 'prop-types'
-import { useUserDataContext } from 'src/contexts/UserDataContext'
-import { useUIContext } from 'src/contexts/UiContext'
-import { IS_PORTFOLIO, IS_GENERATOR } from 'src/lib/constants'
-import { useToasts } from 'src/contexts/ToastsContext'
 import { get } from 'lodash'
+import { Section, useToasts } from '@bolio-ui/core'
+import { Header } from 'src/components'
+import PropTypes from 'prop-types'
 
-import Header from 'src/components/Header'
+const Portfolio = ({ user }) => {
+  const { setToast } = useToasts()
 
-const Portfolio = ({ user, isPreview = false }) => {
-  // const { user: userContext, updateValue } = useUserDataContext()
-  // const { ToastsType, addToastWithTimeout } = useToasts()
-  // const { restartValues, updateValue: updateUI } = useUIContext()
-  const isEditable = !(IS_PORTFOLIO || isPreview)
   const userData = user
 
   useEffect(() => {
-    // restartValues()
-    // updateUI({
-    //   isEditable,
-    //   showDeployButton: IS_GENERATOR,
-    //   showCustomizer: isEditable
-    // })
-  }, [isEditable])
-
-  useEffect(() => {
     if (user) {
-      // updateValue(user)
-      // if (get(user, 'github.limited') === true) {
-      //   addToastWithTimeout(
-      //     ToastsType.ERROR,
-      //     'Github API rate limit exceeded try again in 1 hour'
-      //   )
-      // }
+      if (get(user, 'github.limited') === true) {
+        setToast({
+          text: 'Github API rate limit exceeded try again in 1 hour.',
+          type: 'secondary',
+          delay: 2000
+        })
+      }
     }
-  }, [user])
+  }, [setToast, user])
 
   return (
     <Section>

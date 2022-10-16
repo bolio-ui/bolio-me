@@ -20,23 +20,23 @@ function Home() {
     <>
       <NextSeo
         title={
-          '404: Page not found | Bolio UI - Amazing, modern and creative tools for React UI'
+          '404: Page not found | Bolio Me - Just enter your username and see what happens'
         }
         description={
-          'Make your development more amazing, modern and creative with tools for React.'
+          'Use Bolio Me to create your developer portfolio with just your username.'
         }
         openGraph={{
           url: `${router.pathname}`,
           title:
-            '404: Page not found | Bolio UI - Amazing, modern and creative tools for React UI',
+            '404: Page not found | Bolio Me - Just enter your username and see what happens',
           description:
-            'Make your development more amazing, modern and creative with tools for React.',
+            'Use Bolio Me to create your developer portfolio with just your username.',
           images: [
             {
               url: '/img/cover.png',
               width: 1200,
               height: 630,
-              alt: '404: Not | Bolio UI - Amazing, modern and creative tools for React UI'
+              alt: '404: Not | Bolio Me - Just enter your username and see what happens'
             }
           ]
         }}
