@@ -30,6 +30,7 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     }
   }
+
   try {
     const { resources } = await getIsGithubRateLimited(true)
     const { remaining } = resources.core

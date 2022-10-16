@@ -3,7 +3,7 @@ import { GITHUB_README_URL } from 'src/lib/constants'
 
 export const isEnabledUser = (user) => {
   if (isEmpty(user)) return false
-  if (!user.hasGithub && !user.hasHashnode) {
+  if (!user.hasGithub) {
     return false
   }
   return true
@@ -25,11 +25,7 @@ export const getAvatar = (user) => {
     get(
       user,
       'github.avatar_url',
-      get(
-        user,
-        'hashnode.photo',
-        get(user, 'devto.profile_image', '/default-avatar.png')
-      )
+      get(user, get(user, 'devto.profile_image', '/default-avatar.png'))
     )
   )
 }

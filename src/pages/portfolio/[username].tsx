@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
-// import { UserNotFoundView, PortfolioView } from '@views'
 import { withRouter } from 'next/router'
 import PropTypes from 'prop-types'
-// import { useChangeRootColor } from 'src/hooks'
 import { Section, Container, Grid, Text, Spinner } from '@bolio-ui/core'
 import buildUser from 'src/lib/userBuilder'
 import { isEnabledUser } from 'src/utils/userMapping'
@@ -35,13 +33,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 const PortfolioPage = ({ router, user }) => {
-  const [loaderText, setLoaderText] = useState('Doing the magic 🪄💫 ...')
+  const [loaderText, setLoaderText] = useState('Making it happen... 🥷🏼⚡️')
 
   useEffect(() => {
     if (router.isFallback) {
       setTimeout(() => {
         setLoaderText(
-          'I recommend you have the same username on Github, Hashnode and Dev.to 🪄💫 ...'
+          'Recommend you have the same username on Github and Dev.to 🥷🏼⚡️'
         )
       }, 1500)
     }
@@ -52,8 +50,14 @@ const PortfolioPage = ({ router, user }) => {
       <Base>
         <Section py={10} className="section-portifolio">
           <Container>
-            <Grid.Container gap={2} justify="center" alignItems="center">
-              <Spinner mb="1rem" />
+            <Grid.Container
+              gap={2}
+              direction="column"
+              justify="center"
+              alignItems="center"
+              style={{ textAlign: 'center' }}
+            >
+              <Spinner mb="1rem" scale={2} />
               {!IS_PORTFOLIO && <Text h1>{loaderText}</Text>}
             </Grid.Container>
           </Container>
@@ -63,7 +67,7 @@ const PortfolioPage = ({ router, user }) => {
   }
 
   if (!router.isFallback && !isEnabledUser(user)) {
-    return <UserNotFound user={user} />
+    return <UserNotFound username={user?.username} />
   }
 
   return <Portfolio user={user} />
