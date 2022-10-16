@@ -4,8 +4,5 @@ export const grayTheme = Themes.createFromDark({
   type: 'gray',
   palette: {
     background: '#121214'
-  },
-  layout: {
-    pageWidthWithMargin: '720pt'
   }
 })

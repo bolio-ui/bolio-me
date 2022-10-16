@@ -7,6 +7,7 @@ import {
   Button,
   Link,
   Text,
+  Tabs,
   useTheme,
   useBodyScroll
 } from '@bolio-ui/core'
@@ -58,116 +59,53 @@ function PortfolioNavigation({ user }: PortfolioNavigationProps) {
                 xs={6}
                 md={6}
                 justify="flex-start"
-                style={{ marginTop: '8px' }}
+                alignItems="center"
+                alignContent="center"
               >
                 <Link href="/">
                   <Text b>{user?.github?.name}</Text>
                 </Link>
               </Grid>
-              <Grid xs={6} md={6} justify="flex-end">
-                <div className="controls">
-                  <>
-                    <Link
-                      href="https://github.com/bolio-ui/bolio-ui"
-                      target="_blank"
-                    >
-                      <Button
-                        w="28px"
-                        h="28px"
-                        py={0}
-                        px={0}
-                        className="theme-button"
-                        aria-label="Github Bolio UI"
-                        type="abort"
-                      >
-                        <Github
-                          fontSize={16}
-                          color={theme.palette.foreground}
-                        />
-                      </Button>
-                    </Link>
-                    <Link
-                      href="https://www.twitter.com/bolio_ui/"
-                      target="_blank"
-                    >
-                      <Button
-                        w="28px"
-                        h="28px"
-                        py={0}
-                        px={0}
-                        className="theme-button"
-                        aria-label="Twitter Bolio UI"
-                        type="abort"
-                      >
-                        <Twitter
-                          fontSize={16}
-                          color={theme.palette.foreground}
-                        />
-                      </Button>
-                    </Link>
-                    <Link
-                      href="https://www.instagram.com/bolio.ui/"
-                      target="_blank"
-                    >
-                      <Button
-                        w="28px"
-                        h="28px"
-                        py={0}
-                        px={0}
-                        className="theme-button"
-                        aria-label="Instagram Bolio UI"
-                        type="abort"
-                      >
-                        <Instagram
-                          fontSize={16}
-                          color={theme.palette.foreground}
-                        />
-                      </Button>
-                    </Link>
-                    <Button
-                      w="28px"
-                      h="28px"
-                      py={0}
-                      px={0}
-                      aria-label="Toggle Purple mode"
-                      className="theme-button"
-                      type="abort"
-                      onClick={() =>
-                        settings.switchTheme(
-                          theme.type === 'light' ? 'gray' : 'light'
-                        )
-                      }
-                    >
-                      {theme.type === 'light' ? (
-                        <Moon fontSize={16} color={theme.palette.foreground} />
-                      ) : (
-                        <Sun fontSize={16} color={theme.palette.foreground} />
-                      )}
-                    </Button>
-                    <Spacer w={1} />
-                    <Link
-                      href="https://www.patreon.com/brunnoandrade"
-                      target="_blank"
-                    >
-                      <Button
-                        icon={
-                          <Heart
-                            fill="red"
-                            stroke="red"
-                            height={12}
-                            width={12}
-                          />
-                        }
-                        auto
-                        scale={0.75}
-                        rounded
-                        type="secondary"
-                      >
-                        Sponsor
-                      </Button>
-                    </Link>
-                  </>
-                </div>
+              <Grid
+                xs={6}
+                md={6}
+                justify="flex-end"
+                alignItems="center"
+                alignContent="center"
+              >
+                <Button
+                  w="28px"
+                  h="28px"
+                  py={0}
+                  px={0}
+                  aria-label="Toggle Purple mode"
+                  className="theme-button"
+                  type="abort"
+                  onClick={() =>
+                    settings.switchTheme(
+                      theme.type === 'light' ? 'gray' : 'light'
+                    )
+                  }
+                >
+                  {theme.type === 'light' ? (
+                    <Moon fontSize={16} color={theme.palette.foreground} />
+                  ) : (
+                    <Sun fontSize={16} color={theme.palette.foreground} />
+                  )}
+                </Button>
+                <Tabs
+                  value={router.asPath}
+                  onChange={(route) => router.push(route)}
+                  hideDivider
+                  hideBorder
+                  style={{ marginTop: '10px' }}
+                >
+                  <Tabs.Item label="About" value="/docs/components/avatar" />
+                  <Tabs.Item
+                    label="Project"
+                    value="/docs/hooks/use-body-scroll"
+                  />
+                </Tabs>
               </Grid>
             </Grid.Container>
           </div>
@@ -203,35 +141,6 @@ function PortfolioNavigation({ user }: PortfolioNavigationProps) {
           width: 2.25rem;
           height: 2.25rem;
           padding: 0;
-        }
-
-        .logo {
-          padding: 0 ${theme.layout.gap};
-          margin-bottom: 3px;
-        }
-        .tabs {
-          padding: 0 ${theme.layout.gap};
-          margin-bottom: 3px;
-        }
-        .tabs :global(.content) {
-          display: none;
-        }
-        @media only screen and (max-width: ${theme.breakpoints.md.max}) {
-          .tabs {
-            display: none;
-          }
-        }
-
-        .controls {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          height: 50px;
-        }
-        .controls :global(.menu-toggle) {
-          display: flex;
-          align-items: center;
-          height: 50px;
         }
       `}</style>
     </>
