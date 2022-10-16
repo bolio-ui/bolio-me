@@ -114,8 +114,6 @@ const buildUser = async (params) => {
     devto: devtoUser
   })
 
-  console.log('user312312321321 ===>', user)
-
   return user
 }
 
