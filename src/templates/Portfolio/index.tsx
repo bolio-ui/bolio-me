@@ -1,7 +1,11 @@
 import { useEffect } from 'react'
 import { get } from 'lodash'
 import { Section, useToasts } from '@bolio-ui/core'
-import { Header } from 'src/components'
+import {
+  PortfolioNavigation,
+  PortfolioHero,
+  PortfolioAbout
+} from 'src/components'
 import PropTypes from 'prop-types'
 
 const Portfolio = ({ user }) => {
@@ -23,9 +27,10 @@ const Portfolio = ({ user }) => {
 
   return (
     <Section>
-      {userData && <Header user={userData} />}
-      {/* {userData?.hasReadme && <About user={userData} />}
-      {userData?.hasPosts && <Blog user={userData} />}
+      <PortfolioNavigation user={userData} />
+      {userData && <PortfolioHero user={userData} />}
+      {userData?.github?.readme && <PortfolioAbout user={userData} />}
+      {/* {userData?.hasPosts && <Blog user={userData} />}
       {userData?.hasRepos && <Projects user={userData} />}
       {(userData.email || userData.isHireable) && <Contact user={userData} />} */}
     </Section>

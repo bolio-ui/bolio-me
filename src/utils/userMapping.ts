@@ -3,7 +3,7 @@ import { GITHUB_README_URL } from 'src/lib/constants'
 
 export const isEnabledUser = (user) => {
   if (isEmpty(user)) return false
-  if (!user.hasGithub) {
+  if (!user.github) {
     return false
   }
   return true

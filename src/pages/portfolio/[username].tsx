@@ -43,12 +43,12 @@ const PortfolioPage = ({ router, user }) => {
         )
       }, 1500)
     }
-  }, [router.isFallback])
+  }, [])
 
   if (router.isFallback) {
     return (
       <Base>
-        <Section py={10} className="section-portifolio">
+        <Section py={10}>
           <Container>
             <Grid.Container
               gap={2}
