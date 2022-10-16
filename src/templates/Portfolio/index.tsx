@@ -4,7 +4,8 @@ import { Section, useToasts } from '@bolio-ui/core'
 import {
   PortfolioNavigation,
   PortfolioHero,
-  PortfolioAbout
+  PortfolioAbout,
+  PortfolioFooter
 } from 'src/components'
 import PropTypes from 'prop-types'
 
@@ -23,7 +24,7 @@ const Portfolio = ({ user }) => {
         })
       }
     }
-  }, [setToast, user])
+  }, [])
 
   return (
     <Section>
@@ -33,6 +34,7 @@ const Portfolio = ({ user }) => {
       {/* {userData?.hasPosts && <Blog user={userData} />}
       {userData?.hasRepos && <Projects user={userData} />}
       {(userData.email || userData.isHireable) && <Contact user={userData} />} */}
+      {userData && <PortfolioFooter />}
     </Section>
   )
 }

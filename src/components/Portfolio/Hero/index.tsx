@@ -1,6 +1,15 @@
 import React from 'react'
 import { getAvatar } from 'src/utils/userMapping'
-import { Text, Container, Grid, Avatar, Section } from '@bolio-ui/core'
+import {
+  Text,
+  Container,
+  Grid,
+  Avatar,
+  Section,
+  Link,
+  Button
+} from '@bolio-ui/core'
+import { IconGitHub, IconDevto } from 'src/components/Icons'
 
 interface Props {
   user
@@ -9,13 +18,19 @@ interface Props {
 export type PortfolioHeroProps = Props
 
 function PortfolioHero({ user }: PortfolioHeroProps) {
-  console.log('TESTETSTE =====>', user)
+  // console.log('TESTETSTE =====>', user)
 
   return (
     <Section py={6}>
       <Container>
         <Grid.Container gap={2}>
-          <Grid xs={12} md={6}>
+          <Grid
+            xs={12}
+            md={6}
+            justify="center"
+            alignItems="center"
+            alignContent="center"
+          >
             <Avatar src={getAvatar(user)} height={10} width={10} />
           </Grid>
           <Grid xs={12} md={6} direction="column" justify="center">
@@ -29,6 +44,36 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
             {user?.github?.email && (
               <a href={`mailto:${user?.github?.email}`}>Get In Touch</a>
             )}
+            <Grid.Container gap={2}>
+              {user?.github && (
+                <Grid direction="column" justify="center">
+                  <Link href="https://github.com/" target="_blank">
+                    <Button
+                      icon={<IconGitHub />}
+                      style={{ textTransform: 'none' }}
+                      auto
+                      rounded
+                    >
+                      Github
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+              {user?.devto && (
+                <Grid>
+                  <Link href="https://dev.to/" target="_blank">
+                    <Button
+                      icon={<IconDevto />}
+                      style={{ textTransform: 'none' }}
+                      auto
+                      rounded
+                    >
+                      Dev.to
+                    </Button>
+                  </Link>
+                </Grid>
+              )}
+            </Grid.Container>
           </Grid>
         </Grid.Container>
       </Container>

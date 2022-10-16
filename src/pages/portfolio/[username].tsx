@@ -39,7 +39,7 @@ const PortfolioPage = ({ router, user }) => {
     if (router.isFallback) {
       setTimeout(() => {
         setLoaderText(
-          'Recommend you have the same username on Github and Dev.to 🥷🏼⚡️'
+          'Recommend you have the same username on Github and Dev.to... 🥷🏼⚡️'
         )
       }, 1500)
     }
