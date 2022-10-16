@@ -23,7 +23,9 @@ function Home({ remaining }) {
   }
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required('Username is required field.')
+    username: Yup.string()
+      .required('Username is required field')
+      .min(3, 'This field must have at least 3 characters')
   })
 
   useEffect(() => {
@@ -31,10 +33,10 @@ function Home({ remaining }) {
       setToast({
         text: 'Github API rate limit exceeded try again in 1 hour.',
         type: 'secondary',
-        delay: 2000
+        delay: 3000
       })
     }
-  }, [remaining, setToast])
+  }, [])
 
   const handleSubmit = React.useCallback(
     (values, { resetForm }) => {
@@ -96,7 +98,7 @@ function Home({ remaining }) {
                       onChange={handleChange('username')}
                       onBlur={handleBlur('username')}
                     />
-                    {touched.username && (
+                    {touched.username && errors.username && (
                       <Text font="12px" mt={0.5} mb={0} type="error">
                         {errors.username}
                       </Text>
@@ -122,7 +124,7 @@ function Home({ remaining }) {
         </Container>
         <Container>
           <Grid.Container gap={2} justify="center">
-            <Text p mt={2}>
+            <Text p mt={1}>
               Available requests {remaining}
               /60
             </Text>

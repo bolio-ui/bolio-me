@@ -66,55 +66,23 @@ export const getIsGithubRateLimited = async (showLimit = false) => {
   }
 }
 
-const applyValidations = (user) => {
-  const githubName = get(user, 'github.name')
-  const devtoName = get(user, 'devto.name')
-  const hashnodeName = get(user, 'hashnode.name')
-  if (
-    !isEmpty(githubName) &&
-    !isEmpty(devtoName) &&
-    !areSimilarStrings(githubName, devtoName)
-  ) {
-    delete user.devto
-  }
-  if (
-    !isEmpty(githubName) &&
-    !isEmpty(hashnodeName) &&
-    !areSimilarStrings(githubName, hashnodeName, 0.5)
-  ) {
-    // eslint-disable-next-line no-param-reassign
-    delete user.hashnode
-  }
-  return user
-}
-
-const fullfillUser = async ({
-  username,
-  github = {},
-  hashnode = {},
-  devto = {}
-}) => {
+const fullfillUser = async ({ username, github = {}, devto = {} }) => {
   const user = {
+    username,
     github,
-    hashnode,
     devto
   }
   if (!github.login) {
     let githubUsername = ''
-    if (get(hashnode, 'socialMedia.github')) {
-      githubUsername = cleanGithubUrl(get(hashnode, 'socialMedia.github'))
-    } else if (get(devto, 'github_username')) {
+
+    if (get(devto, 'github_username')) {
       githubUsername = get(devto, 'github_username')
     }
+
     user.github.login = githubUsername
   }
+
   if (get(user, 'github.login')) {
-    if (
-      get(hashnode, 'socialMedia.github') !== get(user, 'github.login') &&
-      !isEmpty(get(hashnode, 'socialMedia.github'))
-    ) {
-      user.github.login = cleanGithubUrl(get(hashnode, 'socialMedia.github'))
-    }
     const githubUserRes = await fetch(`${GITHUB_USER_URL}${user.github.login}`)
     const githubUserData = await githubUserRes.json()
     const githubReadmeData = await fetchUserReadme(user.github.login)
@@ -130,29 +98,24 @@ const fullfillUser = async ({
 }
 
 const buildUser = async (params) => {
-  //   const apolloClient = initializeApollo()
   let user = {}
-  const { username, isPreview = false } = params
+  const { username } = params
 
   const githubUserResponse = await fetch(`${GITHUB_USER_URL}${username}`)
   const githubUserRes = await githubUserResponse.json()
   const devtoUserResponse = await fetch(`${DEVTO_USER_URL}${username}`)
   const devtoUserRes = await devtoUserResponse.json()
-  //   const { data: hnUserData } = await apolloClient.query({
-  //     query: GET_USER_BY_USERNAME,
-  //     variables: {
-  //       username
-  //     }
-  //   })
   const githubUser = cleanAttrs(githubUserRes)
-  // const hashnodeUser = cleanAttrs(hnUserData.user)
+
   const devtoUser = cleanAttrs(devtoUserRes)
   user = await fullfillUser({
-    username,
+    username: username,
     github: githubUser,
-    // hashnode: hashnodeUser,
     devto: devtoUser
   })
+
+  console.log('user312312321321 ===>', user)
+
   return user
 }
 
