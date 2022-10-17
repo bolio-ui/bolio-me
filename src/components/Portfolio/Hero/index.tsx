@@ -21,7 +21,7 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
   console.log('user =====>', user)
 
   return (
-    <Section py={6}>
+    <Section py={4}>
       <Container>
         <Grid.Container gap={2}>
           <Grid
