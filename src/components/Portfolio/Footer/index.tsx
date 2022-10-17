@@ -1,8 +1,13 @@
 import React from 'react'
 import { Section, Text, Link, Container, Grid } from '@bolio-ui/core'
-import { Heart } from '@bolio-ui/icons'
 
-function PortfolioFooter() {
+interface Props {
+  user
+}
+
+export type PortfolioFooterProps = Props
+
+function PortfolioFooter({ user }: PortfolioFooterProps) {
   return (
     <Section padding={2}>
       <Container>
@@ -14,23 +19,7 @@ function PortfolioFooter() {
         >
           <Grid>
             <Text h6 my={0}>
-              MADE & DESIGNED WITH
-              <Heart
-                fill="red"
-                stroke="red"
-                height={12}
-                width={12}
-                style={{ marginLeft: 3, marginRight: 3 }}
-              />
-              BY{' '}
-              <Link
-                href="https://brunnoandrade.com.br/"
-                target="_blank"
-                rel="noopener"
-                underline
-              >
-                BRUNO ANDRADE
-              </Link>
+              © {new Date().getFullYear()} {user?.github?.name}
             </Text>
           </Grid>
         </Grid.Container>
