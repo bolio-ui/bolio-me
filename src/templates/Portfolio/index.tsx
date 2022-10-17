@@ -34,7 +34,7 @@ const Portfolio = ({ user }) => {
       {/* {userData?.hasPosts && <Blog user={userData} />}
       {userData?.hasRepos && <Projects user={userData} />}
       {(userData.email || userData.isHireable) && <Contact user={userData} />} */}
-      {userData && <PortfolioFooter />}
+      {userData && <PortfolioFooter user={userData} />}
     </Section>
   )
 }

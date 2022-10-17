@@ -12,6 +12,13 @@ function PortfolioAbout({ user }: PortfolioAboutProps) {
   return (
     <Section py={6}>
       <Container>
+        <Grid.Container>
+          <Text h1 type="secondary">
+            About me
+          </Text>
+        </Grid.Container>
+      </Container>
+      <Container>
         <Grid.Container gap={2}>
           <Grid justify="center">
             <Text>
