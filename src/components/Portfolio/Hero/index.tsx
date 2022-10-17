@@ -18,7 +18,7 @@ interface Props {
 export type PortfolioHeroProps = Props
 
 function PortfolioHero({ user }: PortfolioHeroProps) {
-  // console.log('TESTETSTE =====>', user)
+  console.log('user =====>', user)
 
   return (
     <Section py={6}>
@@ -47,7 +47,10 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
             <Grid.Container gap={2}>
               {user?.github && (
                 <Grid direction="column" justify="center">
-                  <Link href="https://github.com/" target="_blank">
+                  <Link
+                    href={`https://github.com/${user?.github?.login}`}
+                    target="_blank"
+                  >
                     <Button
                       icon={<IconGitHub />}
                       style={{ textTransform: 'none' }}
@@ -61,7 +64,10 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
               )}
               {user?.devto && (
                 <Grid>
-                  <Link href="https://dev.to/" target="_blank">
+                  <Link
+                    href={`https://dev.to/${user?.devto?.username}`}
+                    target="_blank"
+                  >
                     <Button
                       icon={<IconDevto />}
                       style={{ textTransform: 'none' }}
