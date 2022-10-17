@@ -10,7 +10,7 @@ export type PortfolioAboutProps = Props
 
 function PortfolioAbout({ user }: PortfolioAboutProps) {
   return (
-    <Section py={6}>
+    <Section>
       <Container>
         <Grid.Container>
           <Text h1 type="secondary">
