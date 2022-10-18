@@ -106,7 +106,7 @@ function PortfolioRepositorie({ user }: PortfolioRepositoriesProps) {
       <Container>
         <Grid.Container gap={2} justify="center">
           <Grid mt={2}>
-            <Link href={user?.html_url} target="_blank">
+            <Link href={user?.github.html_url} target="_blank">
               <Button style={{ textTransform: 'none' }} auto rounded>
                 Show more
               </Button>
