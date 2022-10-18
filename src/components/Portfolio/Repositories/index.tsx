@@ -18,24 +18,24 @@ interface Props {
   user
 }
 
-export type PortfolioRepositorieProps = Props
+export type PortfolioRepositoriesProps = Props
 
-function PortfolioRepositorie({ user }: PortfolioRepositorieProps) {
+function PortfolioRepositorie({ user }: PortfolioRepositoriesProps) {
   const theme = useTheme()
 
   const [userRepos] = useState(get(user, 'github.repos'))
 
   return (
     <Section py={6}>
-      <Container>
-        <Grid.Container>
-          <Text h1 type="secondary">
+      <Container style={{ marginBottom: '15px' }}>
+        <Grid.Container gap={2}>
+          <Text h2 type="secondary">
             My repositories
           </Text>
         </Grid.Container>
       </Container>
       <Container>
-        <Grid.Container gap={2} justify="center">
+        <Grid.Container gap={2} justify="flex-start">
           {userRepos &&
             userRepos.slice(0, 6).map((repo, index) => {
               const {
@@ -61,7 +61,6 @@ function PortfolioRepositorie({ user }: PortfolioRepositorieProps) {
                         background: theme.palette.accents_2
                       }}
                       width="100%"
-                      shadow
                     >
                       <Row align="middle" justify="space-between">
                         <Link href={html_url} target="_blank">
@@ -102,6 +101,17 @@ function PortfolioRepositorie({ user }: PortfolioRepositorieProps) {
                 </>
               )
             })}
+        </Grid.Container>
+      </Container>
+      <Container>
+        <Grid.Container gap={2} justify="center">
+          <Grid mt={2}>
+            <Link href={user?.html_url} target="_blank">
+              <Button style={{ textTransform: 'none' }} auto rounded>
+                Show more
+              </Button>
+            </Link>
+          </Grid>
         </Grid.Container>
       </Container>
     </Section>
