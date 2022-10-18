@@ -21,7 +21,7 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
   console.log('user =====>', user)
 
   return (
-    <Section py={4}>
+    <Section py={6}>
       <Container>
         <Grid.Container gap={2}>
           <Grid
@@ -31,7 +31,9 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
             alignItems="center"
             alignContent="center"
           >
-            <Avatar src={getAvatar(user)} height={10} width={10} />
+            <div className="border-gradient">
+              <Avatar src={getAvatar(user)} height={10} width={10} />
+            </div>
           </Grid>
           <Grid xs={12} md={6} direction="column" justify="center">
             <Text i type="secondary" my={0}>
@@ -45,7 +47,7 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
               <a href={`mailto:${user?.github?.email}`}>Get In Touch</a>
             )}
             <Grid.Container gap={2}>
-              {user?.github && (
+              {user?.github?.login && (
                 <Grid direction="column" justify="center">
                   <Link
                     href={`https://github.com/${user?.github?.login}`}
@@ -62,7 +64,7 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
                   </Link>
                 </Grid>
               )}
-              {user?.devto && (
+              {user?.devto?.username && (
                 <Grid>
                   <Link
                     href={`https://dev.to/${user?.devto?.username}`}
@@ -83,6 +85,14 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
           </Grid>
         </Grid.Container>
       </Container>
+      <style jsx>{`
+        .border-gradient {
+          background: linear-gradient(#c25fff, #7828c9) padding-box,
+            linear-gradient(to right, #c25fff, #7828c9) border-box;
+          border-radius: 50em;
+          border: 4px solid transparent;
+        }
+      `}</style>
     </Section>
   )
 }

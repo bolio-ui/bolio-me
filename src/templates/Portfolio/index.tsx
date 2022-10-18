@@ -5,7 +5,7 @@ import {
   PortfolioNavigation,
   PortfolioHero,
   PortfolioAbout,
-  PortfolioRepositorie,
+  PortfolioRepositories,
   PortfolioFooter
 } from 'src/components'
 import PropTypes from 'prop-types'
@@ -32,7 +32,7 @@ const Portfolio = ({ user }) => {
       <PortfolioNavigation user={userData} />
       {userData && <PortfolioHero user={userData} />}
       {userData?.github?.readme && <PortfolioAbout user={userData} />}
-      {userData?.github?.repos && <PortfolioRepositorie user={userData} />}
+      {userData?.github?.repos && <PortfolioRepositories user={userData} />}
       {userData && <PortfolioFooter user={userData} />}
     </Section>
   )
