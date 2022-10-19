@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { get } from 'lodash'
 import { Section, useToasts } from '@bolio-ui/core'
 import {
@@ -13,7 +13,8 @@ import PropTypes from 'prop-types'
 const Portfolio = ({ user }) => {
   const { setToast } = useToasts()
 
-  const userData = user
+  console.log('user?.github?.repos', user?.github?.repos)
+  console.log('user?.github?.repos', user?.github?.repos.length)
 
   useEffect(() => {
     if (user) {
@@ -29,11 +30,15 @@ const Portfolio = ({ user }) => {
 
   return (
     <Section>
-      <PortfolioNavigation user={userData} />
-      {userData && <PortfolioHero user={userData} />}
-      {userData?.github?.readme && <PortfolioAbout user={userData} />}
-      {userData?.github?.repos && <PortfolioRepositories user={userData} />}
-      {userData && <PortfolioFooter user={userData} />}
+      <PortfolioNavigation user={user} />
+      {user && <PortfolioHero user={user} />}
+      {user?.github?.readme && !user?.github?.readme.includes('404') && (
+        <PortfolioAbout user={user} />
+      )}
+      {user?.github?.repos && user?.github?.repos?.length > 0 && (
+        <PortfolioRepositories user={user} />
+      )}
+      {user && <PortfolioFooter user={user} />}
     </Section>
   )
 }

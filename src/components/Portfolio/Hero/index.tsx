@@ -18,7 +18,7 @@ interface Props {
 export type PortfolioHeroProps = Props
 
 function PortfolioHero({ user }: PortfolioHeroProps) {
-  console.log('user =====>', user)
+  // console.log('user =====>', user)
 
   return (
     <Section py={6}>
@@ -90,7 +90,7 @@ function PortfolioHero({ user }: PortfolioHeroProps) {
           background: linear-gradient(#c25fff, #7828c9) padding-box,
             linear-gradient(to right, #c25fff, #7828c9) border-box;
           border-radius: 50em;
-          border: 4px solid transparent;
+          border: 6px solid transparent;
         }
       `}</style>
     </Section>

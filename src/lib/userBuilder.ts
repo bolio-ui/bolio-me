@@ -1,12 +1,11 @@
-import { cleanAttrs, cleanGithubUrl, areSimilarStrings } from 'src/utils'
+import { cleanAttrs } from 'src/utils'
 import { getGithubReadmeURL } from 'src/utils/userMapping'
-import { get, orderBy, isEmpty } from 'lodash'
+import { get, orderBy } from 'lodash'
 import {
   GITHUB_API_URL,
   GITHUB_USER_URL,
   DEVTO_USER_URL,
-  DEVTO_ARTICLES_URL,
-  IS_PORTFOLIO
+  DEVTO_ARTICLES_URL
 } from './constants'
 
 const fetchUserReadme = async (username) => {
