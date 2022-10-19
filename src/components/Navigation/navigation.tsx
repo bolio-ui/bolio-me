@@ -58,107 +58,83 @@ const Navigation: React.FC = () => {
               </Grid>
               <Grid xs={6} md={6} justify="flex-end">
                 <div className="controls">
-                  <>
-                    <Link
-                      href="https://github.com/bolio-ui/bolio-ui"
-                      target="_blank"
-                    >
-                      <Button
-                        w="28px"
-                        h="28px"
-                        py={0}
-                        px={0}
-                        className="theme-button"
-                        aria-label="Github Bolio UI"
-                        type="abort"
-                      >
-                        <Github
-                          fontSize={16}
-                          color={theme.palette.foreground}
-                        />
-                      </Button>
-                    </Link>
-                    <Link
-                      href="https://www.twitter.com/bolio_ui/"
-                      target="_blank"
-                    >
-                      <Button
-                        w="28px"
-                        h="28px"
-                        py={0}
-                        px={0}
-                        className="theme-button"
-                        aria-label="Twitter Bolio UI"
-                        type="abort"
-                      >
-                        <Twitter
-                          fontSize={16}
-                          color={theme.palette.foreground}
-                        />
-                      </Button>
-                    </Link>
-                    <Link
-                      href="https://www.instagram.com/bolio.ui/"
-                      target="_blank"
-                    >
-                      <Button
-                        w="28px"
-                        h="28px"
-                        py={0}
-                        px={0}
-                        className="theme-button"
-                        aria-label="Instagram Bolio UI"
-                        type="abort"
-                      >
-                        <Instagram
-                          fontSize={16}
-                          color={theme.palette.foreground}
-                        />
-                      </Button>
-                    </Link>
+                  <Link
+                    href="https://github.com/bolio-ui/bolio-ui"
+                    target="_blank"
+                  >
                     <Button
                       w="28px"
                       h="28px"
                       py={0}
                       px={0}
-                      aria-label="Toggle Purple mode"
                       className="theme-button"
+                      aria-label="Github Bolio UI"
                       type="abort"
-                      onClick={() =>
-                        settings.switchTheme(
-                          theme.type === 'light' ? 'gray' : 'light'
-                        )
-                      }
                     >
-                      {theme.type === 'light' ? (
-                        <Moon fontSize={16} color={theme.palette.foreground} />
-                      ) : (
-                        <Sun fontSize={16} color={theme.palette.foreground} />
-                      )}
+                      <Github fontSize={16} color={theme.palette.foreground} />
                     </Button>
-                    <Spacer w={1} />
-                    <Link
-                      href="https://www.patreon.com/brunnoandrade"
-                      target="_blank"
+                  </Link>
+                  <Link
+                    href="https://www.twitter.com/bolio_ui/"
+                    target="_blank"
+                  >
+                    <Button
+                      w="28px"
+                      h="28px"
+                      py={0}
+                      px={0}
+                      className="theme-button"
+                      aria-label="Twitter Bolio UI"
+                      type="abort"
                     >
-                      <Button
-                        icon={
-                          <Heart
-                            fill="red"
-                            stroke="red"
-                            height={12}
-                            width={12}
-                          />
-                        }
-                        auto
-                        scale={0.75}
-                        rounded
-                        type="secondary"
-                      >
-                        Sponsor
-                      </Button>
-                    </Link>
-                  </>
+                      <Twitter fontSize={16} color={theme.palette.foreground} />
+                    </Button>
+                  </Link>
+                  <Link
+                    href="https://www.instagram.com/bolio.ui/"
+                    target="_blank"
+                  >
+                    <Button
+                      w="28px"
+                      h="28px"
+                      py={0}
+                      px={0}
+                      className="theme-button"
+                      aria-label="Instagram Bolio UI"
+                      type="abort"
+                    >
+                      <Instagram
+                        fontSize={16}
+                        color={theme.palette.foreground}
+                      />
+                    </Button>
+                  </Link>
+                  <Button
+                    w="28px"
+                    h="28px"
+                    py={0}
+                    px={0}
+                    aria-label="Toggle Purple mode"
+                    className="theme-button"
+                    type="abort"
+                    onClick={() =>
+                      settings.switchTheme(
+                        theme.type === 'light' ? 'gray' : 'light'
+                      )
+                    }
+                  >
+                    {theme.type === 'light' ? (
+                      <Moon fontSize={16} color={theme.palette.foreground} />
+                    ) : (
+                      <Sun fontSize={16} color={theme.palette.foreground} />
+                    )}
+                  </Button>
+                  <Spacer w={1} />
+                  <Link href="https://bolio-ui.com/" target="_blank">
+                    <Button auto scale={0.75} rounded type="secondary-light">
+                      Bolio UI 🥷🏼
+                    </Button>
+                  </Link>
                 </div>
               </Grid>
             </Grid.Container>

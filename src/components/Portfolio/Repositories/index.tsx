@@ -6,11 +6,13 @@ import {
   Text,
   Container,
   Row,
+  Col,
   Grid,
   Section,
   Card,
   Spacer,
-  Link
+  Link,
+  Tag
 } from '@bolio-ui/core'
 import * as Icons from '@bolio-ui/icons'
 
@@ -26,7 +28,7 @@ function PortfolioRepositorie({ user }: PortfolioRepositoriesProps) {
   const [userRepos] = useState(get(user, 'github.repos'))
 
   return (
-    <Section py={6}>
+    <Section py={6} id="#repositories">
       <Container style={{ marginBottom: '15px' }}>
         <Grid.Container gap={2}>
           <Text h2 type="secondary">
@@ -44,7 +46,8 @@ function PortfolioRepositorie({ user }: PortfolioRepositoriesProps) {
                 stargazers_count,
                 html_url,
                 forks_count,
-                language
+                language,
+                visibility
               } = repo
               return (
                 <>
@@ -63,22 +66,38 @@ function PortfolioRepositorie({ user }: PortfolioRepositoriesProps) {
                       width="100%"
                     >
                       <Row align="middle" justify="space-between">
-                        <Link href={html_url} target="_blank">
-                          <Text h4 my={0}>
-                            {name}
-                          </Text>
-                        </Link>
-                        <Link href={html_url} target="_blank">
-                          <Button
-                            icon={
-                              <Icons.Github stroke={theme.palette.foreground} />
-                            }
-                            auto
+                        <Col span={10}>
+                          <Link href={html_url} target="_blank">
+                            <Text h4 my={0}>
+                              {name}
+                            </Text>
+                          </Link>
+                          <Spacer h={0} />
+                          <Tag
                             style={{
-                              background: theme.palette.accents_3
+                              background: theme.palette.accents_3,
+                              border: 'none'
                             }}
-                          />
-                        </Link>
+                            scale={0.5}
+                          >
+                            {visibility}
+                          </Tag>
+                        </Col>
+                        <Col span={2}>
+                          <Link href={html_url} target="_blank">
+                            <Button
+                              icon={
+                                <Icons.Github
+                                  stroke={theme.palette.foreground}
+                                />
+                              }
+                              auto
+                              style={{
+                                background: theme.palette.accents_3
+                              }}
+                            />
+                          </Link>
+                        </Col>
                       </Row>
                       <Spacer h={2} />
                       <Row justify="space-between">
@@ -106,7 +125,7 @@ function PortfolioRepositorie({ user }: PortfolioRepositoriesProps) {
       <Container>
         <Grid.Container gap={2} justify="center">
           <Grid mt={2}>
-            <Link href={user?.html_url} target="_blank">
+            <Link href={user?.github.html_url} target="_blank">
               <Button style={{ textTransform: 'none' }} auto rounded>
                 Show more
               </Button>
