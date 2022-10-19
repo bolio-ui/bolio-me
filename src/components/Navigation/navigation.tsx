@@ -9,7 +9,7 @@ import {
   useTheme,
   useBodyScroll
 } from '@bolio-ui/core'
-import { Sun, Moon, Heart, Github, Instagram, Twitter } from '@bolio-ui/icons'
+import { Sun, Moon, Github, Instagram, Twitter } from '@bolio-ui/icons'
 import { useSettings } from 'src/contexts/SettingsContext'
 import Logo from 'src/components/Logo'
 

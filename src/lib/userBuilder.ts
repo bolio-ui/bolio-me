@@ -1,12 +1,7 @@
 import { cleanAttrs } from 'src/utils'
 import { getGithubReadmeURL } from 'src/utils/userMapping'
 import { get, orderBy } from 'lodash'
-import {
-  GITHUB_API_URL,
-  GITHUB_USER_URL,
-  DEVTO_USER_URL,
-  DEVTO_ARTICLES_URL
-} from './constants'
+import { GITHUB_API_URL, GITHUB_USER_URL, DEVTO_USER_URL } from './constants'
 
 const fetchUserReadme = async (username) => {
   const branches = ['main', 'master']
@@ -65,7 +60,7 @@ export const getIsGithubRateLimited = async (showLimit = false) => {
   }
 }
 
-const fullfillUser = async ({ username, github = {}, devto = {} }) => {
+const fullfillUser = async ({ username, github, devto }) => {
   const user = {
     username,
     github,

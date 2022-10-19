@@ -13,9 +13,6 @@ import PropTypes from 'prop-types'
 const Portfolio = ({ user }) => {
   const { setToast } = useToasts()
 
-  console.log('user?.github?.repos', user?.github?.repos)
-  console.log('user?.github?.repos', user?.github?.repos.length)
-
   useEffect(() => {
     if (user) {
       if (get(user, 'github.limited') === true) {
@@ -26,7 +23,7 @@ const Portfolio = ({ user }) => {
         })
       }
     }
-  }, [])
+  })
 
   return (
     <Section>

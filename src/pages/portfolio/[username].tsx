@@ -43,7 +43,7 @@ const PortfolioPage = ({ router, user }) => {
         )
       }, 1500)
     }
-  }, [])
+  })
 
   if (router.isFallback) {
     return (
