@@ -36,15 +36,16 @@ function Home({ remaining }) {
         delay: 3000
       })
     }
-  }, [])
+  })
 
   const handleSubmit = React.useCallback(
     (values, { resetForm }) => {
       const wind: Window = window
       if (!values.username || remaining === 0) return
       const formattedUsername = toLowerCase(values.username)
-      if (wind !== undefined) wind.location = `/portfolio/${formattedUsername}`
-      resetForm({})
+      if (wind !== undefined)
+        wind.location.href = `/portfolio/${formattedUsername}`
+      resetForm()
     },
     [remaining]
   )

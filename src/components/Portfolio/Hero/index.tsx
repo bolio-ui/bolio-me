@@ -18,10 +18,8 @@ interface Props {
 export type PortfolioHeroProps = Props
 
 function PortfolioHero({ user }: PortfolioHeroProps) {
-  // console.log('user =====>', user)
-
   return (
-    <Section py={6}>
+    <Section py={6} id="hero">
       <Container>
         <Grid.Container gap={2}>
           <Grid
