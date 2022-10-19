@@ -17,6 +17,13 @@ export const getGithubReadmeURL = (
   return `${GITHUB_README_URL}${username}/${username}/${branch}/${fileName}`
 }
 
+export const getHeroLink = (user) => {
+  if (!isEmpty(get(user, 'username'))) {
+    return `/portfolio/${user?.username}#hero`
+  }
+  return '/'
+}
+
 export const getAvatar = (user) => {
   if (!user) return ''
   return get(

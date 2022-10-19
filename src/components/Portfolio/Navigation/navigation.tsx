@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { getHeroLink } from 'src/utils/userMapping'
 import {
   Container,
   Grid,
@@ -61,7 +62,7 @@ function PortfolioNavigation({ user }: PortfolioNavigationProps) {
                 alignItems="center"
                 alignContent="center"
               >
-                <Link href="/">
+                <Link href={getHeroLink(user)}>
                   <Text b>{user?.github?.name}</Text>
                 </Link>
               </Grid>
@@ -99,10 +100,13 @@ function PortfolioNavigation({ user }: PortfolioNavigationProps) {
                   hideBorder
                   style={{ marginTop: '10px' }}
                 >
-                  <Tabs.Item label="About" value="/docs/components/avatar" />
+                  <Tabs.Item
+                    label="About"
+                    value={`/portfolio/${user?.github?.login}#about`}
+                  />
                   <Tabs.Item
                     label="Project"
-                    value="/docs/hooks/use-body-scroll"
+                    value={`/portfolio/${user?.github?.login}#repositories`}
                   />
                 </Tabs>
               </Grid>

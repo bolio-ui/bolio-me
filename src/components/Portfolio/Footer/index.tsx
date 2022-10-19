@@ -1,5 +1,5 @@
 import React from 'react'
-import { Section, Text, Link, Container, Grid } from '@bolio-ui/core'
+import { Section, Text, Container, Grid } from '@bolio-ui/core'
 
 interface Props {
   user
