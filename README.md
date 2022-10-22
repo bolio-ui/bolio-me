@@ -11,13 +11,11 @@
   <img alt="Github Stars" src="https://badgen.net/github/stars/bolio-ui/bolio-me" />
 </p>
 
-<br />
-
 ## About
 
 Bolio Me is an open source application which allows developers to create a portfolio in less than 2 minutes with just their username.
 
-This project was developed by Bolio UI. Visit [https://bolio-ui.com/docs/guide](https://bolio-ui.com/docs/guide) to get started with the UI.
+This project was developed by Bolio UI. Visit [https://bolio-ui.com/docs/guide](https://bolio-ui.com/docs/guide) to start using this amazing UI library.
 
 ## Quick Start
 
