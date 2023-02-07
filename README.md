@@ -14,7 +14,7 @@
 
 ## About
 
-Bolio Me is an open source application which allows developers to create a portfolio in less than 2 minutes with just their username.
+[Bolio Me](https://me.bolio-ui.com/) is an open source application which allows developers to create a portfolio in less than 2 minutes with just their username.
 
 This project was developed by Bolio UI. Visit [https://bolio-ui.com/docs/guide](https://bolio-ui.com/docs/guide) to start using this amazing UI library.
 
