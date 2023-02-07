@@ -7,8 +7,9 @@
 <h1 align="center">Bolio Me 🥷🏼</h1>
 
 <p align="center">
-  <img alt="MIT License" src="https://img.shields.io/github/license/bolio-ui/bolio-me"/>
-  <img alt="Github Stars" src="https://badgen.net/github/stars/bolio-ui/bolio-me" />
+  <a href="https://github.com/bolio-ui/bolio-me/blob/master/LICENSE">
+    <img alt="MIT License" src="https://img.shields.io/github/license/bolio-ui/bolio-me"/>
+  </a>
 </p>
 
 ## About
